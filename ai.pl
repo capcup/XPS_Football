@@ -1,3 +1,5 @@
+team_countries([spain,germany]).
+
 team(fc_barcelona, spain, 1170, 1).
 team(real_madrid, spain, 973, 3).
 team(atletico_madrid, spain, 908, 2).
@@ -12,6 +14,19 @@ player(benzema, forward, 40, france).
 player(lewandowski, forward, 70, poland).
 
 
+% Database end 
+
+countries_output():-
+    team_countries(X),
+    print_countries(X,1).
+
+print_countries([],_).
+print_countries([H|T],X):-
+    format('~0f . ~w ~n', [X,H]),
+    N is X+1    
+    print_countries(T,N),
+
+
 team_info(X, Y):-
     team(X, Y),
     format('Team ~w is from ~w ~n', [X,Y]),
@@ -21,14 +36,19 @@ team_info(_).
 print_info(X):-
     player(X, Pos, Mv, Country),
     format('~w plays in the position of the ~w. ~n', [X,Pos]),
-    format('He plays for ~w and his market value is ~2f Mio. Euro ~n', [Country,Mv]),
+    format('He plays for ~w and his market value is ~0f Mio. Euro ~n', [Country,Mv]),
     fail.
 print_info(_).
 
 
 
 
-% Database end 
+
+
+
+
+% functions end
+
 
 start:- 
     write('Hello, what is your name? (in lower case) '),
@@ -44,27 +64,14 @@ hypothesize(messi) :-
     verify(spain),
 	verify(fc_barcelona),
 	verify(messi),
-
-	verify(has_tawny_color),
-	verify(has_dark_spots), 
+    print_info(messi),
 	!.
 
 
-ask(Question) :-
-	write('Does the animal have the following attribute: '),
-	write(Question),
-	write('? '),
-	read(Response),
-	nl,
-	(
-		(Response == yes ; Response == y)
-	->
-		asserta(yes(Question)) 
-	;
-		asserta(no(Question)), 
-		fail
-	).
-
+ask_country() :-
+	write('In which country is the team of the player: '),
+	print_countries().
+	%read(Response),
 
 :- dynamic(name/1, yes/1, no/1).
 
