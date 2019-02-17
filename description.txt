@@ -1,0 +1,13 @@
+Expert System (Football)
+
+This expert system provides information about football players and teams.
+At the beginning the database (db.pl) is loaded. Subsequently, the user is asked for his name.
+Then the user has the possibility to receive information by means of queries:
+
+Queries:
+- start. 
+The program provides information about a player after the user has answered some questions:
+In which country is the player's team? In which team does the player play? 
+Then the player has the possibility between 3 players from a team to choose the player.
+
+Database:

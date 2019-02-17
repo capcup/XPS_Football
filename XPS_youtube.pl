@@ -29,7 +29,7 @@ cold :-
     nl,
     write('3: Nasal spray'),
     nl,
-    write('Please weare warm cloths Because'),
+    write('Please wear warm clothes Because'),
     nl.
 
 flu :-
