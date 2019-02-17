@@ -4,7 +4,7 @@ start:-
     write('Hello, what is your name? (in lower case) '),
     read(Name),
     nl,
-    format('Hello ~w', Name),
+    format('Hello ~w, this program provides (after a few queries) information about a football player ', Name),
     nl,
     ask_country(),
     ask_team(),
@@ -16,13 +16,12 @@ start:-
 % print countries, teams, players
 countries_output():-
     team_countries(X),
-    print_array(X,1).
+    print_array(X).
 
-print_array([],_).
-print_array([H|T],Counter):-
-    format('~0f. ~w ~n', [Counter,H]),
-    N is Counter+1,    
-    print_array(T,N).
+print_array([]).
+print_array([H|T]):-
+    format('~w ~n', H),
+    print_array(T).
 
 
 teams_output:-
@@ -67,7 +66,7 @@ list_players():-
     fail.
 list_players(_).
 
-
+% for user: to get information about a certain player
 info_player():-
     write('These are all players you can get information about: '),
     nl,
@@ -77,9 +76,9 @@ info_player():-
     nl,
     print_info(Response).
 
-% ask 
+% ask questions and answers 
 ask_country() :-
-	write('In which country the team is located?: '),
+	write('In which country is the team located for which the player plays?: '),
     nl,
 	countries_output(),
     read(Response),
@@ -107,8 +106,9 @@ ask_player():-
 
 
 
-:- dynamic(name/1, choice_country/1).
+:- dynamic(name/1, choice_country/1, choice_player/1, choice_team/1).
 
+% verify checks if input of the user exists 
 verify_country() :-
 	(
         choice_country(S),
