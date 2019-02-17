@@ -1,5 +1,18 @@
 :-[db].
 
+start:- 
+    write('Hello, what is your name? (in lower case) '),
+    read(Name),
+    nl,
+    format('Hello ~w', Name),
+    nl,
+    ask_country(),
+    ask_team(),
+    ask_player(),
+    format('I hope it was helpful for you ~w', Name),
+    undo.
+
+
 
 countries_output():-
     team_countries(X),
@@ -43,8 +56,8 @@ team_info(X, Y):-
 team_info(_).
 
 print_info(X):-
-    player(X, Pos, Mv, Country,_,_),
-    format('~w plays in the position of the ~w. ~n', [X,Pos]),
+    player(X, Pos, Mv, Country,Team,_),
+    format('~w plays for ~w in the position of the ~w. ~n', [X,Team,Pos]),
     format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]),
     fail.
 print_info(_).
@@ -55,28 +68,17 @@ list_players():-
     fail.
 list_players(_).
 
+
+% has to be fixed 
 info_player():-
     write('These are all players you can get information about: '),
     nl,
-    list_players(),
+    list_players();
+    write('Choose one player: '),
     read(Response),
     nl,
     print_info(Response).
 
-% functions end
-
-
-start:- 
-    write('Hello, what is your name? (in lower case) '),
-    read(Name),
-    nl,
-    asserta(name(Name)),
-    format('Hello ~w', Name),
-    nl,
-    ask_country(),
-    ask_team(),
-    ask_player(),
-    undo.
 
 
 ask_country() :-
