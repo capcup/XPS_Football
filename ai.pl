@@ -1,11 +1,11 @@
-:-[db].
-
-start:- 
+:-[db],
     write('Hello, what is your name? (in lower case) '),
     read(Name),
-    nl,
-    format('Hello ~w, this program provides (after a few queries) information about a football player ', Name),
-    nl,
+    asserta(name(Name)).
+
+start:- 
+    name(Name),
+    format('Hello ~w, this program provides (after a few queries) information about a football player.~n', Name),
     ask_country(),
     ask_team(),
     ask_player(),
