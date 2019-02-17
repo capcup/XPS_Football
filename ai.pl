@@ -9,7 +9,7 @@ start:-
     ask_country(),
     ask_team(),
     ask_player(),
-    format('I hope it was helpful for you ~w', Name),
+    format('I hope it was helpful for you ~w.', Name),
     undo.
 
 
@@ -47,18 +47,14 @@ print_filtered_player(_,_).
 
 
 % print information team, player 
-team_info(X, Y):-
-    team(X, Y),
-    format('Team ~w is from ~w ~n', [X,Y]),
-    fail.
-team_info(_).
+team_info(X):-
+    team(X, Y,_,_),
+    format('Team ~w is from ~w ~n', [X,Y]).
 
-print_info(X):-
+player_info(X):-
     player(X, Pos, Mv, Country,Team,_),
     format('~w plays for ~w in the position of the ~w. ~n', [X,Team,Pos]),
-    format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]),
-    fail.
-print_info(_).
+    format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]).
 
 list_players():-
     player(X,_,_,_,_,_),
@@ -74,7 +70,7 @@ info_player():-
     write('Choose one player: '),
     read(Response),
     nl,
-    print_info(Response).
+    player_info(Response).
 
 % ask questions and answers 
 ask_country() :-
@@ -143,7 +139,7 @@ verify_player() :-
         choice_country(C),
         choice_player(P),
 		player(P,_,_,_,T,C),
-        print_info(P)
+        player_info(P)
 	->
 		true 
 	;
@@ -152,10 +148,17 @@ verify_player() :-
         retract(choice_player(_)),
         ask_player()
 	).
+    
+end :-
+    name(Name),
+    write('I hope you enjoyed using this program '),
+    write(Name),
+    nl,
+    write('Have a nice day!'),
+    nl,
+    retract(name(Name)),
+    halt.
 
-undo :- 
-	retract(name(_)), 
-	fail.
 undo:-
     retract(choice_country(_)),
     fail.

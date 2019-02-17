@@ -1,10 +1,10 @@
 Expert System (Football):
 
-The program starts by calling the main.pl.
 This expert system provides information about football players and teams.
+The program starts by calling the main.pl.
 At the beginning the database (db.pl) is loaded. Here is all the information needed for the queries:
 Information about the teams (country, market value and table space),
-Information about the players (position, market value, nationality, team).
+Information about the players (position, market value, nationality, team, country of the team).
 
 Subsequently, the user is asked for his name.
 Then the user has the possibility to receive information by means of queries:
@@ -13,11 +13,35 @@ Queries:
 :- start. 
 The user is greeted with his name and made aware that the program provides information about a player.
 The user has to answer some questions: (the answers must be written correctly)
-In which country is the player's team? For which team does the player play? 
+The functions that are used are: ask_country, ask_team, ask_player to find out which player is wanted.
+The functions verify_country, verify_team and verify_player are used to check if the input is in the database.
+If the input does not match the values in the database, the user is prompted to enter again.
+
+The user is asked: In which country is the player's team? For which team does the player play? 
 Then the user has the possibility between 3 players from a team to choose the player.
 After a player is selected, information about the player is displayed.
 Then the player is dismissed with the message "I hope it's helpful for you" and his name.
 
+:- countries_output.
+Prints all countries being considered.
+
+:- teams_output. (only used/usable in function start)
+Prints all teams of a certain country. The country is determined in the function start after the user has been asked for the country.
+
+:- players_output. (only used/usable in function start)
+Prints all players of a team. The Team is determined in the functions start after the user has been asked for the country and the team. 
+
+
 :- info_player.
 It will list all the players that the user can select over.
 After selecting a player, Information about the player is displayed.
+
+:- player_info(X).
+X is the name of the player you want to receive information about.
+
+:- team_info().
+X is the name of the team you want to receive information about.
+
+
+:- end.
+Finish the program in this way, so that you have a goodbye message.
