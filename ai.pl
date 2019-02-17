@@ -49,6 +49,19 @@ print_info(X):-
     fail.
 print_info(_).
 
+list_players():-
+    player(X,_,_,_,_,_),
+    format('~w ~n', X),
+    fail.
+list_players(_).
+
+info_player():-
+    write('These are all players you can get information about: '),
+    nl,
+    list_players(),
+    read(Response),
+    nl,
+    print_info(Response).
 
 % functions end
 

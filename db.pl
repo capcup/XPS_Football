@@ -1,8 +1,8 @@
 % start Database
-team_countries([spain, germany, england, italy]).
 
-% ---------------------------------------------------------------------------
+team_countries([spain, germany]).
 
+% teams
 team(fc_barcelona, spain, 1170, 1).
 team(real_madrid, spain, 973, 3).
 team(atletico_madrid, spain, 908, 2).
@@ -16,6 +16,7 @@ team(juventus, italy, 797, 1).
 team(neapel, italy, 521 ,2).
 team(inter_milan, italy, 582 ,3).
 
+% players
 player(messi, forward, 160, argentina,fc_barcelona,spain).
 player(suarez, forward, 60, uruguay,fc_barcelona,spain).
 player(coutinho, midfield, 140, brazil,fc_barcelona,spain).
