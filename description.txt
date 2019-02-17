@@ -13,7 +13,7 @@ Queries:
 :- start. 
 The user is greeted with his name and made aware that the program provides information about a player.
 The user has to answer some questions: (the answers must be written correctly)
-In which country is the player's team? In which team does the player play? 
+In which country is the player's team? For which team does the player play? 
 Then the user has the possibility between 3 players from a team to choose the player.
 After a player is selected, information about the player is displayed.
 Then the player is dismissed with the message "I hope it's helpful for you" and his name.
