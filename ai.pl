@@ -68,15 +68,6 @@ start:-
     ask_team().
 
 
-/*hypotheses to be tested */
-hypothesize(messi) :- 
-    verify(spain),
-	verify(fc_barcelona),
-	verify(messi),
-    print_info(messi),
-	!.
-
-
 ask_country() :-
 	write('In which country the team is located?: '),
     nl,
@@ -103,9 +94,20 @@ verify_country() :-
         nl,
         ask_country()
 	).
-	
 
-
+/*	
+verify_team() :-
+	(
+        choice_country(S),
+		team(_,S,_,_)
+	->
+		true 
+	;
+		write('The country you typed in does not exist in the database.'),
+        nl,
+        ask_country()
+	).
+*/
 undo :- 
 	retract(name(_)), 
 	fail.
