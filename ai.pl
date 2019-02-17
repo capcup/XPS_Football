@@ -1,20 +1,5 @@
-team_countries([spain, germany, england, italy]).
+:-[db].
 
-team(fc_barcelona, spain, 1170, 1).
-team(real_madrid, spain, 973, 3).
-team(atletico_madrid, spain, 908, 2).
-team(bayern_muenchen, germany, 745, 2).
-team(borussia_dortmund, germany, 556, 1).
-team(moenchengladbach, germany, 275 ,3).
-
-player(messi, forward, 160, argentina,fc_barcelona,spain).
-player(suarez, forward, 60, uruguay,fc_barcelona,spain).
-player(coutinho, midfield, 140, brazil,fc_barcelona,spain).
-player(benzema, forward, 40, france, real_madrid, spain).
-player(lewandowski, forward, 70, poland, bayern_muenchen, germany).
-
-
-% Database end 
 
 countries_output():-
     team_countries(X),
