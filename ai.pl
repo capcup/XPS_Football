@@ -18,13 +18,20 @@ player(lewandowski, forward, 70, poland).
 
 countries_output():-
     team_countries(X),
-    print_countries(X,1).
+    print_array(X,1).
 
-print_countries([],_).
-print_countries([H|T],X):-
-    format('~0f. ~w ~n', [X,H]),
-    N is X+1,    
-    print_countries(T,N).
+print_array([],_).
+print_array([H|T],Counter):-
+    format('~0f. ~w ~n', [Counter,H]),
+    N is Counter+1,    
+    print_array(T,N).
+
+print_teams(Country):-
+    team(Team,Country,_,_),
+    format('~w ~n', Team),
+    fail.
+print_teams(_).
+
 
 
 team_info(X, Y):-
@@ -50,7 +57,8 @@ start:-
     nl,
     asserta(name(Name)),
     format('Hello ~w', Name),
-    nl.
+    nl,
+    ask_country().
 
 
 /*hypotheses to be tested */
@@ -64,10 +72,16 @@ hypothesize(messi) :-
 
 ask_country() :-
 	write('In which country is the team of the player: '),
-	print_countries().
-	%read(Response),
+    nl,
+	countries_output(),
+    read(Response),
+    nl,
+    asserta(choice_country(Response)).
 
-:- dynamic(name/1, yes/1, no/1).
+ask_team() :-
+    write('For which team does the player play?: ').
+
+:- dynamic(name/1, choice_country/1).
 
 verify(S) :-
 	(
