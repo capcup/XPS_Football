@@ -64,6 +64,7 @@ start:-
     format('Hello ~w', Name),
     nl,
     ask_country(),
+    verify_country(),
     ask_team().
 
 
@@ -77,7 +78,7 @@ hypothesize(messi) :-
 
 
 ask_country() :-
-	write('In which country is the team of the player: '),
+	write('In which country the team is located?: '),
     nl,
 	countries_output(),
     read(Response),
@@ -91,19 +92,16 @@ ask_team() :-
 
 :- dynamic(name/1, choice_country/1).
 
-verify(S) :-
+verify_country() :-
 	(
-		yes(S)
+        choice_country(S),
+		team(_,S,_,_)
 	->
 		true 
 	;
-		( 
-			no(S)
-		->
-			fail 
-		;
-			ask(S) 
-		)
+		write('The country you typed in does not exist in the database.'),
+        nl,
+        ask_country()
 	).
 	
 
