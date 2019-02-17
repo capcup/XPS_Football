@@ -1,16 +1,16 @@
-team(fc_barcelona, spain).
-team(real_madrid, spain).
-team(bayern_muenchen, germany).
-team(schalke_04, germany).
+team(fc_barcelona, spain, 1170, 1).
+team(real_madrid, spain, 973, 3).
+team(atletico_madrid, spain, 908, 2).
+team(bayern_muenchen, germany, 745, 2).
+team(borussia_dortmund, germany, 556, 1).
+team(borussia_MGladbach, germany, 275 ,3).
 
 player(messi, forward, 160, argentina).
 player(suarez, forward, 60, uruguay).
+player(coutinho, midfield, 140, brazil).
 player(benzema, forward, 40, france).
 player(lewandowski, forward, 70, poland).
 
-
-info(fc_barcelona, messi, test).
-info(fc_barcelona, iniesta,test).
 
 team_info(X, Y):-
     team(X, Y),
@@ -40,7 +40,48 @@ start:-
     nl.
 
 
-:- dynamic(name/1).
+/*hypotheses to be tested */
+hypothesize(messi) :- 
+	v,
+	carnivore,
+	verify(has_tawny_color),
+	verify(has_dark_spots), 
+	!.
+
+
+ask(Question) :-
+	write('Does the animal have the following attribute: '),
+	write(Question),
+	write('? '),
+	read(Response),
+	nl,
+	(
+		(Response == yes ; Response == y)
+	->
+		asserta(yes(Question)) 
+	;
+		asserta(no(Question)), 
+		fail
+	).
+
+
+:- dynamic(name/1, yes/1, no/1).
+
+verify(S) :-
+	(
+		yes(S)
+	->
+		true 
+	;
+		( 
+			no(S)
+		->
+			fail 
+		;
+			ask(S) 
+		)
+	).
+	
 
 
 undo :- 
