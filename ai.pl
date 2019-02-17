@@ -26,6 +26,11 @@ print_array([H|T],Counter):-
     N is Counter+1,    
     print_array(T,N).
 
+
+teams_output:-
+    choice_country(X),
+    print_teams(X).
+
 print_teams(Country):-
     team(Team,Country,_,_),
     format('~w ~n', Team),
@@ -58,7 +63,8 @@ start:-
     asserta(name(Name)),
     format('Hello ~w', Name),
     nl,
-    ask_country().
+    ask_country(),
+    ask_team().
 
 
 /*hypotheses to be tested */
@@ -79,7 +85,9 @@ ask_country() :-
     asserta(choice_country(Response)).
 
 ask_team() :-
-    write('For which team does the player play?: ').
+    write('For which team does the player play?: '),
+    nl,
+    teams_output().
 
 :- dynamic(name/1, choice_country/1).
 
