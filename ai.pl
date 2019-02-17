@@ -1,4 +1,4 @@
-team_countries([spain,germany]).
+team_countries([spain, germany, england, italy]).
 
 team(fc_barcelona, spain, 1170, 1).
 team(real_madrid, spain, 973, 3).
@@ -22,9 +22,9 @@ countries_output():-
 
 print_countries([],_).
 print_countries([H|T],X):-
-    format('~0f . ~w ~n', [X,H]),
-    N is X+1    
-    print_countries(T,N),
+    format('~0f. ~w ~n', [X,H]),
+    N is X+1,    
+    print_countries(T,N).
 
 
 team_info(X, Y):-
@@ -39,12 +39,6 @@ print_info(X):-
     format('He plays for ~w and his market value is ~0f Mio. Euro ~n', [Country,Mv]),
     fail.
 print_info(_).
-
-
-
-
-
-
 
 
 % functions end
