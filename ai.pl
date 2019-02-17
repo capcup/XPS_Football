@@ -76,7 +76,6 @@ start:-
     ask_country(),
     ask_team(),
     ask_player(),
-    
     undo.
 
 
@@ -135,6 +134,7 @@ verify_team() :-
 	;
 		write('The Team you typed in does not exist in the database.'),
         nl,
+        retract(choice_team(_)),
         ask_team()
 	).
 
@@ -150,6 +150,7 @@ verify_player() :-
 	;
 		write('The Player you typed in does not exist in the database.'),
         nl,
+        retract(choice_player(_)),
         ask_player()
 	).
 
