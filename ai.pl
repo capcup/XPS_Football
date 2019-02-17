@@ -7,11 +7,11 @@ team(bayern_muenchen, germany, 745, 2).
 team(borussia_dortmund, germany, 556, 1).
 team(moenchengladbach, germany, 275 ,3).
 
-player(messi, forward, 160, argentina).
-player(suarez, forward, 60, uruguay).
-player(coutinho, midfield, 140, brazil).
-player(benzema, forward, 40, france).
-player(lewandowski, forward, 70, poland).
+player(messi, forward, 160, argentina,fc_barcelona,spain).
+player(suarez, forward, 60, uruguay,fc_barcelona,spain).
+player(coutinho, midfield, 140, brazil,fc_barcelona,spain).
+player(benzema, forward, 40, france, real_madrid, spain).
+player(lewandowski, forward, 70, poland, bayern_muenchen, germany).
 
 
 % Database end 
@@ -37,7 +37,19 @@ print_teams(Country):-
     fail.
 print_teams(_).
 
+players_output:-
+    choice_country(X),
+    choice_team(Y),
+    print_filtered_player(X,Y).
 
+print_filtered_player(Country, Team):-
+    player(Player,_,_,_,Team,Country),
+    format('~w ~n', Player),
+    fail.
+print_filtered_player(_,_).
+
+
+% print information 
 
 team_info(X, Y):-
     team(X, Y),
@@ -46,9 +58,9 @@ team_info(X, Y):-
 team_info(_).
 
 print_info(X):-
-    player(X, Pos, Mv, Country),
+    player(X, Pos, Mv, Country,_,_),
     format('~w plays in the position of the ~w. ~n', [X,Pos]),
-    format('He plays for ~w and his market value is ~0f Mio. Euro ~n', [Country,Mv]),
+    format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]),
     fail.
 print_info(_).
 
@@ -64,9 +76,10 @@ start:-
     format('Hello ~w', Name),
     nl,
     ask_country(),
-    verify_country(),
     ask_team(),
-    verify_team(). 
+    ask_player(),
+    
+    undo.
 
 
 ask_country() :-
@@ -75,7 +88,8 @@ ask_country() :-
 	countries_output(),
     read(Response),
     nl,
-    asserta(choice_country(Response)).
+    asserta(choice_country(Response)),
+    verify_country().
 
 ask_team() :-
     write('For which team does the player play?: '),
@@ -83,7 +97,19 @@ ask_team() :-
     teams_output(),
     read(Response),
     nl,
-    asserta(choice_team(Response)).
+    asserta(choice_team(Response)),
+    verify_team().
+
+ask_player():-
+    write('Which player would you like to receive information about?'),
+    nl,
+    players_output(),
+    read(Response),
+    nl,
+    asserta(choice_player(Response)),
+    verify_player().
+
+
 
 :- dynamic(name/1, choice_country/1).
 
@@ -96,6 +122,7 @@ verify_country() :-
 	;
 		write('The country you typed in does not exist in the database.'),
         nl,
+        retract(choice_country(_)),
         ask_country()
 	).
 
@@ -113,7 +140,31 @@ verify_team() :-
         ask_team()
 	).
 
+verify_player() :-
+	(
+        choice_team(T),
+        choice_country(C),
+        choice_player(P),
+		player(P,_,_,_,T,C),
+        print_info(P)
+	->
+		true 
+	;
+		write('The Player you typed in does not exist in the database.'),
+        nl,
+        ask_player()
+	).
+
 undo :- 
 	retract(name(_)), 
 	fail.
+undo:-
+    retract(choice_country(_)),
+    fail.
+undo:-
+    retract(choice_team(_)),
+    fail.
+undo:-
+    retract(choice_player(_)),
+    fail.
 undo.
