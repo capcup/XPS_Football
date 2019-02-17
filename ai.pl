@@ -13,7 +13,7 @@ start:-
     undo.
 
 
-
+% print countries, teams, players
 countries_output():-
     team_countries(X),
     print_array(X,1).
@@ -47,8 +47,7 @@ print_filtered_player(Country, Team):-
 print_filtered_player(_,_).
 
 
-% print information 
-
+% print information team, player 
 team_info(X, Y):-
     team(X, Y),
     format('Team ~w is from ~w ~n', [X,Y]),
@@ -69,7 +68,6 @@ list_players():-
 list_players(_).
 
 
-% has to be fixed 
 info_player():-
     write('These are all players you can get information about: '),
     nl,
@@ -79,8 +77,7 @@ info_player():-
     nl,
     print_info(Response).
 
-
-
+% ask 
 ask_country() :-
 	write('In which country the team is located?: '),
     nl,
