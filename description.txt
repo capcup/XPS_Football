@@ -1,13 +1,23 @@
-Expert System (Football)
+Expert System (Football):
 
+The program starts by calling the main.pl.
 This expert system provides information about football players and teams.
-At the beginning the database (db.pl) is loaded. Subsequently, the user is asked for his name.
+At the beginning the database (db.pl) is loaded. Here is all the information needed for the queries:
+Information about the teams (country, market value and table space),
+Information about the players (position, market value, nationality, team).
+
+Subsequently, the user is asked for his name.
 Then the user has the possibility to receive information by means of queries:
 
 Queries:
-- start. 
-The program provides information about a player after the user has answered some questions:
+:- start. 
+The user is greeted with his name and made aware that the program provides information about a player.
+The user has to answer some questions: (the answers must be written correctly)
 In which country is the player's team? In which team does the player play? 
-Then the player has the possibility between 3 players from a team to choose the player.
+Then the user has the possibility between 3 players from a team to choose the player.
+After a player is selected, information about the player is displayed.
+Then the player is dismissed with the message "I hope it's helpful for you" and his name.
 
-Database:
+:- info_player.
+It will list all the players that the user can select over.
+After selecting a player, Information about the player is displayed.
