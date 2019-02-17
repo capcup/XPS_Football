@@ -19,10 +19,9 @@ team_info(X, Y):-
 team_info(_).
 
 print_info(X):-
-    info(X, Y,_),
-    write('Player: '),
-	write(Y),
-    nl,
+    player(X, Pos, Mv, Country),
+    format('~w plays in the position of the ~w. ~n', [X,Pos]),
+    format('He plays for ~w and his market value is ~2f Mio. Euro ~n', [Country,Mv]),
     fail.
 print_info(_).
 
@@ -42,8 +41,10 @@ start:-
 
 /*hypotheses to be tested */
 hypothesize(messi) :- 
-	v,
-	carnivore,
+    verify(spain),
+	verify(fc_barcelona),
+	verify(messi),
+
 	verify(has_tawny_color),
 	verify(has_dark_spots), 
 	!.
