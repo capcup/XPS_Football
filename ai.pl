@@ -5,7 +5,7 @@ team(real_madrid, spain, 973, 3).
 team(atletico_madrid, spain, 908, 2).
 team(bayern_muenchen, germany, 745, 2).
 team(borussia_dortmund, germany, 556, 1).
-team(borussia_MGladbach, germany, 275 ,3).
+team(moenchengladbach, germany, 275 ,3).
 
 player(messi, forward, 160, argentina).
 player(suarez, forward, 60, uruguay).
@@ -65,7 +65,8 @@ start:-
     nl,
     ask_country(),
     verify_country(),
-    ask_team().
+    ask_team(),
+    verify_team(). 
 
 
 ask_country() :-
@@ -79,7 +80,10 @@ ask_country() :-
 ask_team() :-
     write('For which team does the player play?: '),
     nl,
-    teams_output().
+    teams_output(),
+    read(Response),
+    nl,
+    asserta(choice_team(Response)).
 
 :- dynamic(name/1, choice_country/1).
 
@@ -95,19 +99,20 @@ verify_country() :-
         ask_country()
 	).
 
-/*	
+
 verify_team() :-
 	(
-        choice_country(S),
-		team(_,S,_,_)
+        choice_team(T),
+        choice_country(C),
+		team(T,C,_,_)
 	->
 		true 
 	;
-		write('The country you typed in does not exist in the database.'),
+		write('The Team you typed in does not exist in the database.'),
         nl,
-        ask_country()
+        ask_team()
 	).
-*/
+
 undo :- 
 	retract(name(_)), 
 	fail.
