@@ -47,13 +47,15 @@ print_filtered_player(_,_).
 
 
 % print information team, player 
-team_info(X):-
-    team(X, Y,_,_),
-    format('Team ~w is from ~w ~n', [X,Y]).
+team_info(Team):-
+    team(Team, Country,MarketV,Tableplace),
+    format('~w is is a team from ~w and are currently ~w place ~n', [Team,Country, Tableplace]),
+    format('The current market value is ~w Mio. Euro ~n', MarketV).
 
-player_info(X):-
-    player(X, Pos, Mv, Country,Team,_),
-    format('~w plays for ~w in the position of the ~w. ~n', [X,Team,Pos]),
+
+player_info(Name):-
+    player(Name, Pos, Mv, Country,Team,_),
+    format('~w plays for ~w in the position of the ~w. ~n', [Name,Team,Pos]),
     format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]).
 
 list_players():-
@@ -61,6 +63,13 @@ list_players():-
     format('~w ~n', X),
     fail.
 list_players(_).
+
+list_teams():-
+    team(X,_,_,_),
+    format('~w ~n',X),
+    fail.
+list_teams().
+
 
 % for user: to get information about a certain player
 info_player():-
@@ -71,6 +80,15 @@ info_player():-
     read(Response),
     nl,
     player_info(Response).
+
+info_team():-
+    write('These are all teams you can get information about: '),
+    nl,
+    list_teams(),
+    write('Choose one player: '),
+    read(Response),
+    nl,
+    team_info(Response).
 
 % ask questions and answers 
 ask_country() :-
@@ -148,7 +166,7 @@ verify_player() :-
         retract(choice_player(_)),
         ask_player()
 	).
-    
+
 end :-
     name(Name),
     write('I hope you enjoyed using this program '),

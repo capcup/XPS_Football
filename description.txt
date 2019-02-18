@@ -1,3 +1,7 @@
+Please note: 
+All entries of the user must be written without quotation marks and in lower case.
+In order to get a valid answer, the information must be written correctly
+
 Expert System (Football):
 
 This expert system provides information about football players and teams.
@@ -36,10 +40,13 @@ Prints all players of a team. The Team is determined in the functions start afte
 It will list all the players that the user can select over.
 After selecting a player, Information about the player is displayed.
 
+:- info_team.
+                                ERGÄNZEN.
+
 :- player_info(X).
 X is the name of the player you want to receive information about.
 
-:- team_info().
+:- team_info(X).
 X is the name of the team you want to receive information about.
 
 
