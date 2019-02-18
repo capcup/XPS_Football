@@ -44,4 +44,5 @@ X is the name of the team you want to receive information about.
 
 
 :- end.
-Finish the program in this way, so that you have a goodbye message.
+Finish the program in this way, so that you have a goodbye message and retract name(Name).
+
