@@ -1,11 +1,15 @@
-:-[db],
-    write('Hello, what is your name? (in lower case) '),
+:-  ensure_loaded([db]),
+    write('This applies for every input:'),
+    nl,
+    write('Please make sure to answer in lower case and without quotation marks! Thank YOU'),
+    nl,
+    write('Hello, what is your name: '),
     read(Name),
     asserta(name(Name)).
 
 start:- 
     name(Name),
-    format('Hello ~w, this program provides (after a few queries) information about a football player.~n', Name),
+    format('Hello ~w, this program provides (after a few queries) information about a football player.~n', Name),    
     ask_country(),
     ask_team(),
     ask_player(),
