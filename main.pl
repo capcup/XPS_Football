@@ -71,7 +71,34 @@ teams_value :-
         team(MaxTeam,_,Max,_),
         format('~nSo the Team with the highest value is ~w ~n',MaxTeam),
         format('The value is ~0f Mio Euro', Max).
-        
+
+player_value :-
+        countries_output,
+        write('Choose the country from which you would like the player with the highest market value '),
+        nl,
+        write('(If you type all every country is considered)'),
+        nl,
+        write('Input please: '),
+        read(Country),
+        (
+            Country == all
+            %player(messi, forward, 160, argentina,fc_barcelona,spain)
+        -> 
+            findall(X,player(_,_,X,_,_,_),MarketValue),
+            findall(X,player(X,_,_,_,_,_),Player),
+            output_nameNvalue(Player,MarketValue),
+            max(MarketValue, Max),
+            player(MaxPlayer,_,Max,_,_,_)
+        ;
+            findall(X,player(_,_,X,_,_,Country),MarketValue),
+            findall(X,player(X,_,_,_,_,Country),Player),
+            output_nameNvalue(Player,MarketValue),
+            max(MarketValue, Max),
+            player(MaxPlayer,_,Max,_,_,Country)
+        ),        
+        format('~nSo the Player with the highest value is ~w ~n',MaxPlayer),
+        format('The value is ~0f Mio Euro', Max).
+
 
 :- dynamic(name/1, choice_country/1, choice_player/1, choice_team/1).
 
