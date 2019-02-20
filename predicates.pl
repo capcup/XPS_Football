@@ -42,7 +42,7 @@ list_teams():-
     fail.
 list_teams().
 
-% ask questions and answers 
+% questions and answers 
 ask_country() :-
 	write('In which country is the team located for which the player plays?: '),
     nl,
@@ -71,7 +71,7 @@ ask_player():-
     verify_player().
 
 
-% verify checks if input of the user exists 
+% checks if input of the user exists 
 verify_country() :-
 	(
         choice_country(S),
@@ -115,3 +115,21 @@ verify_player() :-
         retract(choice_player(_)),
         ask_player()
 	).
+    
+    % print team and value 
+    output_nameNvalue([],[]).
+    output_nameNvalue([H1|T1],[H2|T2]):-
+        format('~w has a market value of ~0f Mio. Euro ~n', [H1,H2]),
+        output_nameNvalue(T1,T2).
+
+
+    % helper functions to get the max value of a list
+    accMax([H|T],A,Max) :- H > A,
+            accMax(T,H,Max).
+    accMax([H|T],A,Max) :- H =< A,
+            accMax(T,A,Max).
+    accMax([],A,A).
+
+    max(List,Max) :- 
+        List = [H|_],
+        accMax(List,H,Max).

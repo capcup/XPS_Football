@@ -38,6 +38,8 @@ After selecting a player, Informations about the player will be displayed.
 Displays all teams that the user can select over.
 After selecting one team, Informations about it will be displayed.
 
+:- teams_value.
+This predicate is used to find the most valuable team in a country or 'all' countries.
 
 :- player_info(X). (in predicates.pl)
 X is the name of the player you want to receive information about.

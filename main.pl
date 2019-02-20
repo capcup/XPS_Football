@@ -48,6 +48,31 @@ player_info(Name):-
     format('~w plays for ~w in the position of the ~w. ~n', [Name,Team,Pos]),
     format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]).
 
+
+teams_value :-
+        countries_output,
+        write('Choose the country from which you would like the team with the highest market value '),
+        nl,
+        write('(If you type all every country is considered)'),
+        nl,
+        write('Input please: '),
+        read(Country),
+        (
+            Country == all
+        -> 
+            findall(X,team(_,_,X,_),MarketValue),
+            findall(X,team(X,_,_,_),Team)
+        ;
+            findall(X,team(_,Country,X,_),MarketValue),
+            findall(X,team(X,Country,_,_),Team)
+        ),
+        output_nameNvalue(Team,MarketValue),
+        max(MarketValue, Max),
+        team(MaxTeam,_,Max,_),
+        format('~nSo the Team with the highest value is ~w ~n',MaxTeam),
+        format('The value is ~0f Mio Euro', Max).
+        
+
 :- dynamic(name/1, choice_country/1, choice_player/1, choice_team/1).
 
 end :-
