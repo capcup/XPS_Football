@@ -1,14 +1,18 @@
+Expert System (Football):
+
 Please note: 
 All entries of the user must be written without quotation marks and in lower case.
-In order to get a valid answer, the information must be written correctly
-
-Expert System (Football):
+In order to get a valid answer, the input must be written correctly.
 
 This expert system provides information about football players and teams.
 The program starts by calling the main.pl.
+This contains only predicates that the user can / may execute.
+
 At the beginning the database (db.pl) is loaded. Here is all the information needed for the queries:
 Information about the teams (country, market value and table space),
 Information about the players (position, market value, nationality, team, country of the team).
+It also loads the file "predicates", which provides "helper functions". 
+These are used to enable the functions that the user can use.
 
 Subsequently, the user is asked for his name.
 Then the user has the possibility to receive information by means of queries:
@@ -22,34 +26,34 @@ The functions verify_country, verify_team and verify_player are used to check if
 If the input does not match the values in the database, the user is prompted to enter again.
 
 The user is asked: In which country is the player's team? For which team does the player play? 
-Then the user has the possibility between 3 players from a team to choose the player.
+After answering these questions correctly, the user has the possibility between 3 players from a team to choose one.
 After a player is selected, information about the player is displayed.
 Then the player is dismissed with the message "I hope it's helpful for you" and his name.
 
-:- countries_output.
+:- info_player.
+It will list all the players that the user can select over.
+After selecting a player, Informations about the player will be displayed.
+
+:- info_team.
+Displays all teams that the user can select over.
+After selecting one team, Informations about it will be displayed.
+
+
+:- player_info(X). (in predicates.pl)
+X is the name of the player you want to receive information about.
+
+:- team_info(X). (in predicates.pl)
+X is the name of the team you want to receive information about.
+
+:- countries_output. (in predicates.pl)
 Prints all countries being considered.
 
-:- teams_output. (only used/usable in function start)
+:- teams_output. (only used/usable in function start) (in predicates.pl)
 Prints all teams of a certain country. The country is determined in the function start after the user has been asked for the country.
 
-:- players_output. (only used/usable in function start)
+:- players_output. (only used/usable in function start) (in predicates.pl)
 Prints all players of a team. The Team is determined in the functions start after the user has been asked for the country and the team. 
 
 
-:- info_player.
-It will list all the players that the user can select over.
-After selecting a player, Information about the player is displayed.
-
-:- info_team.
-                                ERGÄNZEN.
-
-:- player_info(X).
-X is the name of the player you want to receive information about.
-
-:- team_info(X).
-X is the name of the team you want to receive information about.
-
-
 :- end.
-Finish the program in this way, so that you have a goodbye message and retract name(Name).
-
+Finish the program in this way, so that you have a goodbye message (and retract name(Name)).
