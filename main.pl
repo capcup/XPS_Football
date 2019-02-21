@@ -49,7 +49,7 @@ player_info(Name):-
     format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]).
 
 
-teams_value :-
+team_value :-
         countries_output,
         write('Choose the country from which you would like the team with the highest market value '),
         nl,

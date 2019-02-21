@@ -8,7 +8,7 @@ This expert system provides information about football players and teams.
 The program starts by calling the main.pl.
 This contains only predicates that the user can / may execute.
 
-At the beginning the database (db.pl) is loaded. Here is all the information needed for the queries:
+At the beginning, the database (db.pl) is loaded. Here is all the information needed for the queries:
 Information about the teams (country, market value and table space),
 Information about the players (position, market value, nationality, team, country of the team).
 It also loads the file "predicates", which provides "helper functions". 
@@ -32,11 +32,11 @@ Then the player is dismissed with the message "I hope it's helpful for you" and 
 
 :- info_player.
 It will list all the players that the user can select over.
-After selecting a player, Informations about the player will be displayed.
+After selecting a player, Information about the player will be displayed.
 
 :- info_team.
 Displays all teams that the user can select over.
-After selecting one team, Informations about it will be displayed.
+After selecting one team, Information about it will be displayed.
 
 :- teams_value.
 This predicate is used to find the most valuable team in a country or 'all' countries.
@@ -62,3 +62,4 @@ Prints all players of a team. The Team is determined in the functions start afte
 
 :- end.
 Finish the program in this way, so that you have a goodbye message (and retract name(Name)).
+However, the message is only visible if the window does not close immediately.
