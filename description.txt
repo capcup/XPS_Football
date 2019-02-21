@@ -5,7 +5,7 @@ All entries of the user must be written without quotation marks and in lower cas
 In order to get a valid answer, the input must be written correctly.
 
 This expert system provides information about football players and teams.
-The program starts by calling the main.pl.
+The program starts by calling the aipractical19_745398.pl.
 This contains only predicates that the user can / may execute.
 
 At the beginning, the database (db.pl) is loaded. Here is all the information needed for the queries:
