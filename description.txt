@@ -11,13 +11,15 @@ This contains only predicates that the user can / may execute.
 At the beginning, the database (db.pl) is loaded. Here is all the information needed for the queries:
 Information about the teams (country, market value and table space),
 Information about the players (position, market value, nationality, team, country of the team).
-It also loads the file "predicates", which provides "helper functions". 
+It also loads the file "predicates.pl", which provides "helper functions". 
 These are used to enable the functions that the user can use.
 
 Subsequently, the user is asked for his name.
 Then the user has the possibility to receive information by means of queries:
 
 Queries:
+The following predicates are in the main file - aipractical19_745398.pl.
+
 :- start/0. 
 The user is greeted with his name and made aware that the program provides information about a player.
 The user has to answer some questions: (the answers must be written correctly)
@@ -55,7 +57,7 @@ Finish the program in this way, so that you have a goodbye message (and retract 
 However, the message is only visible if the window does not close immediately.
 
 The following predicates are in 'predicates.pl': 
-All predicates are used as 'helper functions' - not intended for the use of the user
+All predicates are used as 'helper functions' - not intended for the use of the user.
 
 :- countries_output/0. 
 Prints all countries being considered.
@@ -63,7 +65,7 @@ Prints all countries being considered.
 :- teams_output/0. (only used/usable in function start) 
 Prints all teams of a certain country. The country is determined in the function 'start' after the user has been asked for a country.
 
-:- players_output/0. (only used/usable in function start) (in predicates.pl)
+:- players_output/0. (only used/usable in function start)
 Prints all players of a team. The Team is determined in the functions start after the user has been asked for a country and a team. 
 
 :- print_array/1.
@@ -84,12 +86,12 @@ Lists all teams with a line break in between. (not filtered)
 
 :- output_nameNvalue/2.
 The inputs are two lists. They are filtered, so that one is containing the team names and the other one the team values.
-The name and the value of each team are printed with a line break in between.
+The name and the market value of each team are printed with a line break in between.
 
 :- accMax/3.
 This is a helper function to get the max value of a lists.
 
-:- max(List, Max).
+:- max/2.
 Predicate that uses accMax/3 to determine the maximum value of a list.
 
 
