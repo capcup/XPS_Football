@@ -116,7 +116,6 @@ end :-
     retract(name(Name)),
     halt.
 
-% to retract 'name' type 'yes' before closing the program
 undo:-
     retract(choice_country(_)),
     fail.
