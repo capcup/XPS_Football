@@ -109,6 +109,7 @@ end :-
     name(Name),
     write('I hope you enjoyed using this program '),
     write(Name),
+    write('.'),
     nl,
     write('Have a nice day!'),
     nl,
