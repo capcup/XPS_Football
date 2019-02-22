@@ -5,7 +5,7 @@ All entries of the user must be written without quotation marks and in lower cas
 In order to get a valid answer, the input must be written correctly.
 
 This expert system provides information about football players and teams.
-The program starts by calling the aipractical19_745398.pl.
+The program starts by calling the aipractical19_745398.pl - it is the main file.
 This contains only predicates that the user can / may execute.
 
 At the beginning, the database (db.pl) is loaded. Here is all the information needed for the queries:
@@ -18,7 +18,7 @@ Subsequently, the user is asked for his name.
 Then the user has the possibility to receive information by means of queries:
 
 Queries:
-:- start. 
+:- start/0. 
 The user is greeted with his name and made aware that the program provides information about a player.
 The user has to answer some questions: (the answers must be written correctly)
 The functions that are used are: ask_country, ask_team, ask_player to find out which player is wanted.
@@ -30,36 +30,68 @@ After answering these questions correctly, the user has the possibility between 
 After a player is selected, information about the player is displayed.
 Then the player is dismissed with the message "I hope it's helpful for you" and his name.
 
-:- info_player.
+:- info_player/0.
 It will list all the players that the user can select over.
 After selecting a player, Information about the player will be displayed.
 
-:- info_team.
+:- info_team/0.
 Displays all teams that the user can select over.
 After selecting one team, Information about it will be displayed.
 
-:- team_value.
+:- team_value/0.
 This predicate is used to find the most valuable team in a country or 'all' countries.
 
-:- player_value.
+:- player_value/0.
 This predicate is used to find the most valuable player in a country or 'all' countries.
 
-:- player_info(X). (in predicates.pl)
-X is the name of the player you want to receive information about.
+:- player_info/1. 
+The parameter is the name of the player you want to receive information about.
 
-:- team_info(X). (in predicates.pl)
-X is the name of the team you want to receive information about.
+:- team_info/1. 
+The parameter is the name of the team you want to receive information about.
 
-:- countries_output. (in predicates.pl)
-Prints all countries being considered.
-
-:- teams_output. (only used/usable in function start) (in predicates.pl)
-Prints all teams of a certain country. The country is determined in the function start after the user has been asked for the country.
-
-:- players_output. (only used/usable in function start) (in predicates.pl)
-Prints all players of a team. The Team is determined in the functions start after the user has been asked for the country and the team. 
-
-
-:- end.
+:- end/0.
 Finish the program in this way, so that you have a goodbye message (and retract name(Name)).
 However, the message is only visible if the window does not close immediately.
+
+The following predicates are in 'predicates.pl': 
+All predicates are used as 'helper functions' - not intended for the use of the user
+
+:- countries_output/0. 
+Prints all countries being considered.
+
+:- teams_output/0. (only used/usable in function start) 
+Prints all teams of a certain country. The country is determined in the function 'start' after the user has been asked for a country.
+
+:- players_output/0. (only used/usable in function start) (in predicates.pl)
+Prints all players of a team. The Team is determined in the functions start after the user has been asked for a country and a team. 
+
+:- print_array/1.
+The parameter is a list.
+Prints every element of the list with a line break in between.
+
+:- print_teams/1. 
+The parameter is a country. Then all teams of the given country will be printed with a line break in between.
+
+:- print_filtered_player/2.
+The parameters are a country and a team. Then all players of the given country and the team will be printed with a line break in between.
+
+:- list_players/0.
+Lists all players with a line break in between. (not filtered)
+
+:- list_teams/0.
+Lists all teams with a line break in between. (not filtered)
+
+:- output_nameNvalue/2.
+The inputs are two lists. They are filtered, so that one is containing the team names and the other one the team values.
+The name and the value of each team are printed with a line break in between.
+
+:- accMax/3.
+This is a helper function to get the max value of a lists.
+
+:- max(List, Max).
+Predicate that uses accMax/3 to determine the maximum value of a list.
+
+
+
+

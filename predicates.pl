@@ -3,6 +3,7 @@ countries_output():-
     team_countries(X),
     print_array(X).
 
+% prints a list 
 print_array([]).
 print_array([H|T]):-
     format('~w ~n', H),
