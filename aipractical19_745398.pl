@@ -17,7 +17,7 @@ start:-
     format('I hope it was helpful for you ~w.', Name),
     undo.
 
-% for user: to get information about a certain player
+% to get information about a certain player
 info_player:-
     write('These are all players you can get information about: '),
     nl,
@@ -27,6 +27,7 @@ info_player:-
     nl,
     player_info(Response).
 
+% to get information about a certain team
 info_team:-
     write('These are all teams you can get information about: '),
     nl,
@@ -36,19 +37,19 @@ info_team:-
     nl,
     team_info(Response).
 
-% print information team, player 
+% print information about a given team
 team_info(Team):-
     team(Team, Country,MarketV,Tableplace),
     format('~w is is a team from ~w and are currently ~w place ~n', [Team,Country, Tableplace]),
     format('The current market value is ~w Mio. Euro ~n', MarketV).
 
-
+% print information about a given player
 player_info(Name):-
     player(Name, Pos, Mv, Country,Team,_),
     format('~w plays for ~w in the position of the ~w. ~n', [Name,Team,Pos]),
     format('He plays for ~w and his market value is ~0f Mio. Euro. ~n', [Country,Mv]).
 
-
+% This predicate is used to find the most valuable team in a country or 'all' countries.
 team_value :-
         countries_output,
         write('Choose the country from which you would like the team with the highest market value '),
@@ -72,6 +73,7 @@ team_value :-
         format('~nSo the Team with the highest value is ~w ~n',MaxTeam),
         format('The value is ~0f Mio Euro', Max).
 
+%This predicate is used to find the most valuable player in a country or 'all' countries.
 player_value :-
         countries_output,
         write('Choose the country from which you would like the player with the highest market value '),
@@ -102,6 +104,7 @@ player_value :-
 
 :- dynamic(name/1, choice_country/1, choice_player/1, choice_team/1).
 
+% to finish the program with a goodbye message and retract(name(_))
 end :-
     name(Name),
     write('I hope you enjoyed using this program '),
