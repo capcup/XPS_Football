@@ -69,8 +69,7 @@ Prints all teams of a certain country. The country is determined in the function
 Prints all players of a team. The Team is determined in the functions start after the user has been asked for a country and a team. 
 
 :- print_array/1.
-The parameter is a list.
-Prints every element of the list with a line break in between.
+The parameter is a list. Prints every element of the list with a line break in between.
 
 :- print_teams/1. 
 The parameter is a country. Then all teams of the given country will be printed with a line break in between.
@@ -89,7 +88,7 @@ The inputs are two lists. They are filtered, so that one is containing the team 
 The name and the market value of each team are printed with a line break in between.
 
 :- accMax/3.
-This is a helper function to get the max value of a lists.
+This is a helper function to get the max value of a list.
 
 :- max/2.
 Predicate that uses accMax/3 to determine the maximum value of a list.
